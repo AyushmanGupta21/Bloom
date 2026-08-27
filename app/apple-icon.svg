@@ -1,0 +1,23 @@
+<svg width="180" height="180" viewBox="0 0 180 180" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <rect width="180" height="180" rx="40" fill="#09090B" />
+  <g transform="translate(14, 14) scale(0.6)">
+    <!-- Top Petal -->
+    <path d="M128 30 C138 70 155 105 128 128 C101 105 118 70 128 30 Z" fill="#FFFFFF" />
+    <!-- Bottom Petal -->
+    <path d="M128 226 C118 186 101 151 128 128 C155 151 138 186 128 226 Z" fill="#FFFFFF" />
+    <!-- Right Petal -->
+    <path d="M226 128 C186 138 151 155 128 128 C151 101 186 118 226 128 Z" fill="#FFFFFF" />
+    <!-- Left Petal -->
+    <path d="M30 128 C70 118 105 101 128 128 C101 155 70 138 30 128 Z" fill="#FFFFFF" />
+
+    <!-- Diagonals -->
+    <path d="M197 59 C180 92 157 113 128 128 C143 99 164 76 197 59 Z" fill="#D4D4D8" opacity="0.8" />
+    <path d="M59 59 C92 76 113 99 128 128 C99 113 76 92 59 59 Z" fill="#D4D4D8" opacity="0.8" />
+    <path d="M197 197 C164 180 143 157 128 128 C157 143 180 164 197 197 Z" fill="#D4D4D8" opacity="0.8" />
+    <path d="M59 197 C76 164 99 143 128 128 C113 157 92 180 59 197 Z" fill="#D4D4D8" opacity="0.8" />
+
+    <!-- Center -->
+    <circle cx="128" cy="128" r="16" fill="#71717A" />
+    <circle cx="128" cy="128" r="7" fill="#FFFFFF" />
+  </g>
+</svg>

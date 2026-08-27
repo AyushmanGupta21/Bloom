@@ -1,0 +1,18 @@
+<svg width="64" height="64" viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <rect width="64" height="64" rx="16" fill="#09090B" />
+  <!-- Primary Petals -->
+  <path d="M32 10 C35 19 38 27 32 32 C26 27 29 19 32 10 Z" fill="#FFFFFF" />
+  <path d="M32 54 C29 45 26 37 32 32 C38 37 35 45 32 54 Z" fill="#FFFFFF" />
+  <path d="M54 32 C45 35 37 38 32 32 C37 26 45 29 54 32 Z" fill="#FFFFFF" />
+  <path d="M10 32 C19 29 27 26 32 32 C27 38 19 35 10 32 Z" fill="#FFFFFF" />
+
+  <!-- Diagonal Secondary Facets -->
+  <path d="M47 17 C43 24 38 29 32 32 C35 26 40 21 47 17 Z" fill="#D4D4D8" opacity="0.8" />
+  <path d="M17 17 C24 21 29 26 32 32 C26 29 21 24 17 17 Z" fill="#D4D4D8" opacity="0.8" />
+  <path d="M47 47 C40 43 35 38 32 32 C38 35 43 40 47 47 Z" fill="#D4D4D8" opacity="0.8" />
+  <path d="M17 47 C21 40 26 35 32 32 C29 38 24 43 17 47 Z" fill="#D4D4D8" opacity="0.8" />
+
+  <!-- Core -->
+  <circle cx="32" cy="32" r="4.5" fill="#71717A" />
+  <circle cx="32" cy="32" r="2" fill="#FFFFFF" />
+</svg>

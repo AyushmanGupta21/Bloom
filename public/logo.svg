@@ -1,0 +1,46 @@
+<svg width="512" height="512" viewBox="0 0 512 512" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="bloomGlow" x1="64" y1="64" x2="448" y2="448" gradientUnits="userSpaceOnUse">
+      <stop offset="0%" stop-color="#FFFFFF" stop-opacity="1" />
+      <stop offset="50%" stop-color="#E4E4E7" stop-opacity="0.9" />
+      <stop offset="100%" stop-color="#A1A1AA" stop-opacity="0.75" />
+    </linearGradient>
+    <linearGradient id="bloomCore" x1="180" y1="180" x2="332" y2="332" gradientUnits="userSpaceOnUse">
+      <stop offset="0%" stop-color="#FFFFFF" />
+      <stop offset="100%" stop-color="#71717A" />
+    </linearGradient>
+    <filter id="subtleGlow" x="-20%" y="-20%" width="140%" height="140%">
+      <feGaussianBlur stdDeviation="8" result="blur" />
+      <feComposite in="SourceGraphic" in2="blur" operator="over" />
+    </filter>
+  </defs>
+
+  <!-- Background Dark Rounded Container -->
+  <rect width="512" height="512" rx="128" fill="#09090B" />
+  <rect width="510" height="510" x="1" y="1" rx="127" stroke="rgba(255,255,255,0.15)" stroke-width="2" />
+
+  <!-- Blooming Petals (Geometric Precision Emergence) -->
+  <g filter="url(#subtleGlow)" transform="translate(0, 0)">
+    <!-- Top Petal -->
+    <path d="M256 96 C276 160 300 216 256 256 C212 216 236 160 256 96 Z" fill="url(#bloomGlow)" opacity="0.95" />
+    <!-- Bottom Petal -->
+    <path d="M256 416 C236 352 212 296 256 256 C300 296 276 352 256 416 Z" fill="url(#bloomGlow)" opacity="0.95" />
+    <!-- Right Petal -->
+    <path d="M416 256 C352 276 296 300 256 256 C296 212 352 236 416 256 Z" fill="url(#bloomGlow)" opacity="0.95" />
+    <!-- Left Petal -->
+    <path d="M96 256 C160 236 216 212 256 256 C216 300 160 276 96 256 Z" fill="url(#bloomGlow)" opacity="0.95" />
+
+    <!-- Diagonal Northeast Petal -->
+    <path d="M370 142 C344 196 304 232 256 256 C280 208 316 168 370 142 Z" fill="url(#bloomGlow)" opacity="0.75" />
+    <!-- Diagonal Northwest Petal -->
+    <path d="M142 142 C196 168 232 208 256 256 C208 232 168 196 142 142 Z" fill="url(#bloomGlow)" opacity="0.75" />
+    <!-- Diagonal Southeast Petal -->
+    <path d="M370 370 C316 344 280 304 256 256 C304 280 344 316 370 370 Z" fill="url(#bloomGlow)" opacity="0.75" />
+    <!-- Diagonal Southwest Petal -->
+    <path d="M142 370 C168 316 208 280 256 256 C232 304 196 344 142 370 Z" fill="url(#bloomGlow)" opacity="0.75" />
+
+    <!-- Center Nucleus Core -->
+    <circle cx="256" cy="256" r="32" fill="url(#bloomCore)" />
+    <circle cx="256" cy="256" r="14" fill="#FFFFFF" />
+  </g>
+</svg>

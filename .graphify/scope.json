@@ -1,0 +1,14 @@
+{
+  "requested_mode": "all",
+  "resolved_mode": "all",
+  "source": "configured-default",
+  "root": ".",
+  "candidate_count": null,
+  "included_count": 107,
+  "excluded_untracked_count": 0,
+  "excluded_ignored_count": 0,
+  "excluded_sensitive_count": 0,
+  "missing_committed_count": 0,
+  "warnings": [],
+  "recommendation": null
+}
