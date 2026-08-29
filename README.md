@@ -1,106 +1,86 @@
-# 🌸 Bloom — AI Website Builder
-
 <div align="center">
-  
-  <img src="public/logo-main.png" alt="Bloom Logo" width="120" height="120" />
-  
-  <br />
 
-  **From idea to website, instantly. Turn natural language into beautiful, production-ready web experiences.**
+<img src="public/logo-main.png" alt="Bloom Logo" width="110" height="110" />
 
-  [![Live Demo](https://img.shields.io/badge/Live-Demo-emerald?style=for-the-badge)](https://bloom-ai-builder.vercel.app/)
-  [![Next.js](https://img.shields.io/badge/Next.js-16.2.12-black?style=for-the-badge&logo=next.js)](https://nextjs.org/)
-  [![React](https://img.shields.io/badge/React-19.2.8-blue?style=for-the-badge&logo=react)](https://react.dev/)
-  [![NVIDIA NIM](https://img.shields.io/badge/NVIDIA-NIM_AI_Engine-76B900?style=for-the-badge&logo=nvidia)](https://build.nvidia.com/)
-  [![TypeScript](https://img.shields.io/badge/TypeScript-5.0-blue?style=for-the-badge&logo=typescript)](https://www.typescriptlang.org/)
-  [![Tailwind CSS](https://img.shields.io/badge/Tailwind_CSS-v4-38bdf8?style=for-the-badge&logo=tailwindcss)](https://tailwindcss.com/)
+# Bloom — AI Website Builder
+
+**From idea to website, instantly. Turn natural language into beautiful, production-ready web experiences.**
+
+[![Live Demo](https://img.shields.io/badge/Live-Demo-10b981?style=for-the-badge)](https://web-ly.vercel.app/)
+[![Next.js](https://img.shields.io/badge/Next.js-15.5-000000?style=for-the-badge&logo=next.js)](https://nextjs.org/)
+[![React](https://img.shields.io/badge/React-19.2-61dafb?style=for-the-badge&logo=react&logoColor=white)](https://react.dev/)
+[![NVIDIA NIM](https://img.shields.io/badge/NVIDIA-NIM_Engine-76b900?style=for-the-badge&logo=nvidia&logoColor=white)](https://build.nvidia.com/)
+[![TypeScript](https://img.shields.io/badge/TypeScript-5-3178c6?style=for-the-badge&logo=typescript&logoColor=white)](https://www.typescriptlang.org/)
+[![Tailwind CSS](https://img.shields.io/badge/Tailwind-v4-38bdf8?style=for-the-badge&logo=tailwindcss&logoColor=white)](https://tailwindcss.com/)
 
 </div>
 
 ---
 
-## 🌟 About Bloom
+## Overview
 
-**Bloom** is a next-generation AI-powered website builder designed to transform ideas, concepts, and natural language prompts into complete, responsive, production-ready websites in seconds.
+Bloom is an AI-powered website builder that turns a plain-English description into a complete, responsive, production-ready web page in seconds. Describe what you want, watch the code stream into a live preview, then refine it visually or through conversational prompts — and export clean HTML when you're done.
 
-Powered by a unified **NVIDIA NIM** high-throughput inference engine with dynamic model discovery, deterministic Bloom model branding, real-time code streaming, token bucket rate limiting, and comprehensive generation persistence.
+Generation runs entirely on **NVIDIA NIM** hosted inference. The engine streams HTML and Tailwind CSS in real time, so the preview starts rendering within about a second of hitting generate, and a full page completes in roughly twenty seconds.
 
----
+## Key Features
 
-## 🔮 NVIDIA NIM Architecture & Model Mapping
+- **Instant generation** — Describe a site in natural language and get a complete, responsive page with modern styling, working icons, and real imagery.
+- **Real-time streaming preview** — Code streams token-by-token into a sandboxed iframe with a live, staged progress indicator (connect → generate → render).
+- **Conversational editing** — Refine layouts, swap sections, adjust colors, or add components through follow-up chat prompts.
+- **Direct element editing** — Click any element in the preview to edit copy, tweak styles, or replace images inline.
+- **Multiple models** — Choose the engine that fits the task, from fast prototyping to high-quality synthesis.
+- **Generation history** — Every generation is persisted with prompt, output, token counts, and duration for one-click reuse and auditing.
+- **Project workspace** — Manage projects and frames from a persistent dashboard backed by serverless PostgreSQL.
+- **Clean export** — Download standard HTML5 + Tailwind CSS ready to deploy anywhere.
+- **Secure auth** — Authentication and protected workspace routing via Clerk.
 
-Bloom integrates with the official **NVIDIA NIM hosted API** (`https://integrate.api.nvidia.com/v1`) using server-side API keys and translates raw canonical model IDs into polished, deterministic Bloom model identities:
+## AI Models
 
-| Bloom Model Name | Canonical NVIDIA NIM Model | Badge | Capabilities | Description |
-| :--- | :--- | :--- | :--- | :--- |
-| **Bloom Reason** *(Default)* | `nvidia/llama-3.1-nemotron-70b-instruct` | `◈ Deep` | Chat, Code, Reasoning, Flowbite | Fine-tuned Nemotron 70B for pristine UI precision |
-| **Bloom Swift** | `meta/llama-3.3-70b-instruct` | `⚡ Fast` | Chat, Stream, Code, Fast Prototyping | Ultra-fast Llama 3.3 for high-velocity website creation |
-| **Bloom Code** | `qwen/qwen2.5-coder-32b-instruct` | `⌘ Code` | HTML, CSS, JS, Tailwind, Flowbite | Specialized for clean syntax and component architecture |
-| **Bloom Deep** | `deepseek-ai/deepseek-r1` | `🧠 Logic` | Deep Chain-of-Thought, Reasoning | High-reasoning architectural synthesis for complex apps |
-| **Bloom Max** | `meta/llama-3.1-405b-instruct` | `✦ 405B Max` | Massive 128k context, Enterprise | Largest 405B model for extensive design systems |
-| **Bloom Vision** | `meta/llama-3.2-90b-vision-instruct` | `◉ Vision` | Multimodal VLM, Screenshot to UI | Vision model for analyzing image references and layouts |
-| **Bloom Studio** | `mistralai/mistral-large-2-instruct` | `🎨 Studio` | Creative Aesthetics, Varied Typography | Creative design specialist with distinct stylistic range |
+Bloom talks to the official NVIDIA NIM hosted API (`https://integrate.api.nvidia.com/v1`) and maps canonical model IDs to friendly Bloom identities. NVIDIA NIM is the sole generation engine — there is no external provider fallback.
 
----
+| Bloom Model | NVIDIA NIM Model | Best For |
+| :--- | :--- | :--- |
+| **Bloom Reason** *(default)* | `openai/gpt-oss-120b` | High-quality, complete websites with icons and imagery |
+| **Bloom Swift** | `openai/gpt-oss-20b` | Fast prototyping and quick iterations |
+| **Bloom Vision** | `meta/llama-3.2-90b-vision-instruct` | Analyzing mockups and complex layouts |
 
-## ✨ Key Capabilities
+If a selected model becomes unavailable, Bloom automatically falls back to the fast default model — staying entirely within NVIDIA NIM.
 
-- 🌸 **Instant Generative Engine** — Describe your dream website in plain English and watch Bloom build a fully responsive page with modern aesthetics.
-- ⚡ **NVIDIA NIM Inference** — Powered by NVIDIA-hosted inference microservices with dynamic catalog discovery from `GET /v1/models`.
-- 🛡️ **Multi-Tier Rate Limiting & Resilience** — Token bucket rate limiting with jittered exponential backoff for `429 Too Many Requests` and automatic failover.
-- 🎨 **Live Interactive Preview** — Real-time iframe sandbox rendering with element selection and style inspection.
-- 💬 **Contextual AI Chat Modifications** — Refine sections, tweak layouts, inject components, or adjust color palettes through conversational AI prompts.
-- 📜 **Generation History & Audit Logs** — Every generation is persisted in PostgreSQL with duration, token counts, and one-click prompt reuse.
-- 🔮 **Optical Liquid Glass UI** — WebGL-powered Snell's law refraction shaders with dynamic optical lenses and glassmorphic depth.
-- 📦 **Workspace & Project Management** — Persistent project dashboard powered by serverless PostgreSQL (Neon) and Drizzle ORM.
-- 💾 **Production Source Export** — Download clean, standard HTML5 and Tailwind CSS bundles ready for local deployment.
-- 🔐 **Enterprise Auth System** — Secure, dark-themed authentication flows powered by Clerk.
+## Tech Stack
 
----
+**Frontend**
+- Next.js 15.5 (App Router) with React 19.2
+- TypeScript 5
+- Tailwind CSS v4
+- Three.js / GLSL shaders for the liquid-glass landing visuals
+- Radix UI primitives, Lucide icons, Sonner toasts
 
-## 🛠️ Technology Stack
+**Backend & Data**
+- NVIDIA NIM hosted inference API (streaming generation)
+- Neon serverless PostgreSQL with Drizzle ORM
+- Clerk for authentication
+- ImageKit for media assets
 
-### Frontend & UI Architecture
-- **Next.js 16.2.12** — Modern React framework with App Router & Turbopack
-- **React 19.2.8** — Latest React primitives & Server Components
-- **TypeScript 5** — Strict type safety across client and server boundaries
-- **Tailwind CSS v4** — High-performance utility-first styling engine
-- **Three.js & GLSL Shaders** — WebGL refraction and optical glass physics
-- **Radix UI & Lucide Icons** — Accessible UI primitives and iconography
-- **Sonner** — Toast notifications
-
-### Backend, Database & AI
-- **NVIDIA NIM API** — High-performance hosted microservice inference (`https://integrate.api.nvidia.com/v1`)
-- **OpenRouter API** — Secondary / fallback LLM generative streaming engine
-- **Neon Serverless PostgreSQL** — Scalable cloud SQL storage with Drizzle ORM
-- **Clerk Authentication** — Identity management and protected workspace routing
-- **ImageKit** — Media assets and optimization
-
----
-
-## 🚀 Quickstart Guide
+## Getting Started
 
 ### Prerequisites
-- Node.js 20+ installed
-- PostgreSQL database (e.g. Neon)
-- Clerk account for authentication
-- NVIDIA NIM API key (obtain from [build.nvidia.com](https://build.nvidia.com))
+- Node.js 20 or newer
+- A PostgreSQL database (e.g. [Neon](https://neon.tech))
+- A [Clerk](https://clerk.com) account for authentication
+- An NVIDIA NIM API key from [build.nvidia.com](https://build.nvidia.com)
 
-### 1. Clone the repository
+### 1. Clone and install
 ```bash
-git clone https://github.com/your-username/bloom.git
-cd bloom
-```
-
-### 2. Install dependencies
-```bash
+git clone https://github.com/AyushmanGupta21/Bloom.git
+cd Bloom
 npm install
 ```
 
-### 3. Configure environment variables
-Create a `.env.local` file in the root directory:
+### 2. Configure environment variables
+Create a `.env` file in the project root:
 ```env
-# Neon PostgreSQL Connection
+# Neon PostgreSQL
 DATABASE_URL=your_neon_postgresql_url
 
 # Clerk Authentication
@@ -109,88 +89,72 @@ CLERK_SECRET_KEY=your_clerk_secret_key
 NEXT_PUBLIC_CLERK_SIGN_IN_URL=/sign-in
 NEXT_PUBLIC_CLERK_SIGN_UP_URL=/sign-up
 
-# NVIDIA NIM AI Engine (Server-side only — never expose to client)
+# NVIDIA NIM (server-side only — never expose to the client)
 NVIDIA_API_KEY=your_nvidia_nim_api_key
 NVIDIA_BASE_URL=https://integrate.api.nvidia.com/v1
 
-# OpenRouter AI Engine (Secondary / Fallback)
-OPENROUTER_API_KEY=your_openrouter_api_key
-
-# ImageKit Integration
+# ImageKit (media)
 NEXT_PUBLIC_IMAGEKIT_PUBLIC_KEY=your_imagekit_public_key
-IMAGEKIT_PRIVATE_KEY=your_imagekit_private_key
+NEXT_PUBLIC_IMAGEKIT_PRIVATE_KEY=your_imagekit_private_key
 NEXT_PUBLIC_IMAGEKIT_URL_ENDPOINT=your_imagekit_url_endpoint
 ```
 
-### 4. Push database schema
+### 3. Push the database schema
 ```bash
-npm run db:push
+npx drizzle-kit push
 ```
 
-### 5. Launch the development server
+### 4. Run the development server
 ```bash
 npm run dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) in your browser to experience Bloom.
+Open [http://localhost:3000](http://localhost:3000) to start building.
 
----
+## How It Works
 
-## 📁 Repository Structure
+1. **Describe** — Enter a website description in the Bloom Copilot, or pick a quick preset.
+2. **Generate** — Bloom streams HTML and Tailwind CSS from NVIDIA NIM directly into a live preview.
+3. **Refine** — Click elements to edit them inline, or send follow-up prompts to change layout, copy, or styling.
+4. **Review history** — Revisit past generations with their prompts, token usage, and durations.
+5. **Export** — Download a clean, ready-to-deploy HTML + Tailwind bundle.
+
+## Project Structure
 
 ```
-bloom/
-├── app/                          # Next.js App Router
-│   ├── (auth)/                  # Clerk authentication routes (Sign In / Sign Up)
-│   ├── _components/             # Landing & navigation components (VertexHero, VertexNavbar)
-│   ├── api/                     # Serverless API routes
-│   │   ├── ai/                  # AI subsystem (models, generations, health)
-│   │   ├── ai-model/            # Generation streaming & logging endpoint
+Bloom/
+├── app/
+│   ├── (auth)/                  # Clerk sign-in / sign-up routes
+│   ├── _components/             # Landing & navigation (VertexHero, VertexNavbar)
+│   ├── api/
+│   │   ├── ai/                  # Model catalog, generations, health endpoints
+│   │   ├── ai-model/            # Streaming generation + logging endpoint
 │   │   ├── chats/               # Conversation persistence
-│   │   ├── frames/              # Frame & design code persistence
+│   │   ├── frames/              # Frame & design-code persistence
 │   │   └── projects/            # Project lifecycle
-│   ├── playground/              # Real-time generative canvas & AI chat editor
-│   ├── workspace/               # User project dashboard & settings
-│   ├── globals.css              # Global design system tokens & liquid glass physics
-│   └── layout.tsx               # Root layout, metadata, Clerk & Model Provider
-├── components/                   # Reusable UI & WebGL shader components
-│   ├── ModelSelector.tsx        # Dynamic Bloom model selector dropdown
-│   ├── ModelDetailsModal.tsx    # Model capability & specs inspection modal
-│   └── LiquidGlassHero.tsx      # WebGL Snell refraction shader engine
-├── config/                      # Database connection & Drizzle schema (generationsTable)
-├── context/                     # Shared React state providers (ModelContext, UserDetail)
+│   ├── playground/              # Live generative canvas & AI chat editor
+│   ├── workspace/               # Project dashboard & settings
+│   ├── globals.css              # Design tokens & liquid-glass styles
+│   └── layout.tsx               # Root layout, metadata, providers
+├── components/                  # Reusable UI & WebGL components
+├── config/                      # Database connection & Drizzle schema
+├── context/                     # Shared React providers
 ├── lib/
-│   └── ai/                      # Multi-provider AI core
-│       ├── types.ts             # Core provider & model interfaces
-│       ├── registry.ts          # Unified model registry
-│       ├── router.ts            # Central request dispatcher & failover
-│       └── providers/
-│           ├── nvidia/          # NVIDIA NIM client, discovery, naming & streaming
-│           └── openrouter/      # Secondary OpenRouter provider adapter
-└── public/                      # Static assets & Bloom vector identity system
+│   └── ai/                      # AI core
+│       ├── registry.ts          # Model registry
+│       ├── router.ts            # Request dispatcher
+│       └── providers/nvidia/    # NVIDIA NIM client, discovery, streaming
+└── public/                      # Static assets & Bloom logo
 ```
 
----
+## License
 
-## 🎯 How It Works
-
-1. **Select Model** — Choose from `Bloom Reason`, `Bloom Swift`, `Bloom Code`, `Bloom Deep`, or `Bloom Max`.
-2. **Prompt** — Enter your desired website specification into the Bloom Copilot.
-3. **Synthesize** — Bloom streams structured HTML, Tailwind CSS, and Flowbite components via NVIDIA NIM.
-4. **Inspect & Edit** — Select any element in the live iframe to tweak copy, colors, and layout, or use chat prompts for complex changes.
-5. **Audit & History** — Inspect previous generations, token usage, and durations in the History drawer.
-6. **Export** — Download clean, modular codebase bundles ready to deploy.
-
----
-
-## 📝 License
-
-This project is licensed under the MIT License.
+Released under the MIT License.
 
 ---
 
 <div align="center">
-  
-  **🌸 Bloom — From idea to website, instantly.**
-  
+
+**Bloom — From idea to website, instantly.**
+
 </div>

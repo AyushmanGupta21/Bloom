@@ -20,7 +20,7 @@ function BloomAvatar() {
       flexShrink: 0,
       padding: '5px',
     }}>
-      <img src="/logo-mark.svg" alt="Bloom" width={18} height={18} style={{ objectFit: 'contain', filter: 'brightness(0) invert(1)' }} />
+      <img src="/logo-transparent.png" alt="Bloom" width={20} height={20} style={{ objectFit: 'contain' }} />
     </div>
   );
 }
