@@ -53,7 +53,7 @@ export function AppSidebar({ onClose, onOpenSettings }: AppSidebarProps) {
       }`}
       header={
         <div className={`flex items-center ${isCollapsed ? 'justify-center' : 'gap-2.5'} py-4 px-3 border-b border-white/5`}>
-          <Image src="/bloom-logo.svg" alt="Bloom Logo" width={32} height={32} className="rounded-lg" />
+          <Image src="/logo-transparent.png" alt="Bloom Logo" width={40} height={40} className="rounded-lg" />
           {!isCollapsed && <h2 className="font-bold text-lg text-white font-mono tracking-tight select-none">Bloom</h2>}
         </div>
       }
