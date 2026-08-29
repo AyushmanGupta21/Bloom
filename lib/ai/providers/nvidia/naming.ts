@@ -13,46 +13,35 @@ interface KnownModelConfig {
 }
 
 const KNOWN_NVIDIA_MODELS: Record<string, KnownModelConfig> = {
-  'deepseek-ai/deepseek-v4-pro-0813': {
+  // Default: GPT-OSS 120B — the best balance of speed and quality. First token
+  // under 1s, completes a full high-quality responsive page in ~20s with proper
+  // Tailwind, icons, real images, and gradients.
+  'openai/gpt-oss-120b': {
     bloomId: 'bloom-reason',
     displayName: 'Bloom Reason',
     shortName: 'Reason',
-    description: 'DeepSeek V4 Pro model for high-accuracy HTML, Tailwind CSS, and Flowbite synthesis.',
+    description: 'Flagship 120B engine for high-quality, complete HTML + Tailwind CSS websites with icons and imagery.',
     badge: '◈ Pro',
     isDefault: true,
     pricingTier: 'free',
   },
-  'deepseek-ai/deepseek-v4-flash-0731': {
+  // Faster, lighter option — quicker but slightly simpler output.
+  'openai/gpt-oss-20b': {
     bloomId: 'bloom-swift',
     displayName: 'Bloom Swift',
     shortName: 'Swift',
-    description: 'Ultra-fast DeepSeek V4 Flash generation engine for instant prototyping and rapid iterations.',
+    description: 'Fast 20B engine for rapid prototyping and quick iterations.',
     badge: '⚡ Fast',
     pricingTier: 'free',
   },
-  'meta/llama-3.2-11b-vision-instruct': {
+  // Vision-capable option for screenshot / mockup analysis.
+  'meta/llama-3.2-90b-vision-instruct': {
     bloomId: 'bloom-vision',
     displayName: 'Bloom Vision',
     shortName: 'Vision',
-    description: 'Multimodal vision model for analyzing screenshot mockups and image asset layouts.',
+    description: 'Vision-capable 90B model for analyzing mockups and complex layouts.',
     badge: '◉ Vision',
     pricingTier: 'pro',
-  },
-  'meta/llama-3.2-90b-vision-instruct': {
-    bloomId: 'bloom-max',
-    displayName: 'Bloom Max',
-    shortName: 'Max',
-    description: 'High-capacity 90B vision model for complex web applications and rich interactive components.',
-    badge: '✦ Max',
-    pricingTier: 'pro',
-  },
-  'mistralai/mistral-nemotron': {
-    bloomId: 'bloom-studio',
-    displayName: 'Bloom Studio',
-    shortName: 'Studio',
-    description: 'Creative design specialist with distinct aesthetic variety and layout depth.',
-    badge: '🎨 Studio',
-    pricingTier: 'free',
   },
 };
 

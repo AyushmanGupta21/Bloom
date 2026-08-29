@@ -31,11 +31,12 @@ type Prop = {
   messages: Messages[];
   onSend: (input: string) => void;
   loading: boolean;
+  loadingPhase?: string;
   isMobile?: boolean;
   activeModelName?: string;
 };
 
-function ChatSection({ messages, onSend, loading, isMobile, activeModelName }: Prop) {
+function ChatSection({ messages, onSend, loading, loadingPhase, isMobile, activeModelName }: Prop) {
   const [input, setInput] = useState('');
   const messagesEndRef = useRef<HTMLDivElement>(null);
   const { selectedModel } = useBloomModel();
@@ -126,9 +127,18 @@ function ChatSection({ messages, onSend, loading, isMobile, activeModelName }: P
               avatar={<BloomAvatar />}
             >
               <ChatMessageBubble variant="ghost">
-                <div className="flex items-center gap-3 py-1.5 text-gray-400">
-                  <Loader2 size={16} className="animate-spin text-gray-300" />
-                  <span className="text-xs font-mono select-none">{currentModelName} is synthesizing design code...</span>
+                <div className="flex flex-col gap-2 py-1.5">
+                  <div className="flex items-center gap-3 text-gray-200">
+                    <Loader2 size={16} className="animate-spin text-emerald-400" />
+                    <span className="text-xs font-mono select-none">
+                      {loadingPhase || `${currentModelName} is working`}
+                      <span className="loading-dots" />
+                    </span>
+                  </div>
+                  {/* Animated progress shimmer bar */}
+                  <div className="w-40 h-1 rounded-full bg-white/10 overflow-hidden">
+                    <div className="h-full w-1/2 rounded-full bg-gradient-to-r from-emerald-500/40 via-emerald-400 to-emerald-500/40 animate-progress-shimmer" />
+                  </div>
                 </div>
               </ChatMessageBubble>
             </ChatMessage>

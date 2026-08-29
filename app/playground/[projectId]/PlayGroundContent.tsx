@@ -20,18 +20,20 @@ export type Messages = {
   content: string
 }
 
-const Prompt = `Generate a modern, responsive HTML page with Tailwind CSS based on this request: {userInput}.
-Return ONLY valid HTML code enclosed in \`\`\`html and \`\`\` code blocks.
-Include all necessary HTML structure, Tailwind classes, and:
-- FontAwesome or Heroicons for icons
-- Google Fonts (Inter/Outfit)
-- Tailwind CSS via CDN
-- Flowbite CSS & JS via CDN
-- Lucide Icons (script tag)
-- Swiper.js for sliders/carousels where relevant
-- Chart.js for charts where relevant
-- Fully interactive components (modals, dropdowns, tabs, accordions) using standard Flowbite data attributes.
-- Ensure the design is visually stunning, responsive, dark-mode inspired or modern palette, and complete.`
+const Prompt = `You are an expert web designer. Generate a complete, visually stunning, responsive single-page HTML website with Tailwind CSS for this request: {userInput}
+
+Return ONLY valid, complete HTML inside a single \`\`\`html code block. It must be a full document from <!DOCTYPE html> to </html>.
+
+STRICT REQUIREMENTS (follow exactly to avoid broken output):
+1. Tailwind CSS: include EXACTLY this in <head>: <script src="https://cdn.tailwindcss.com"></script>
+2. Google Fonts: load "Inter" via a <link> tag and set it as the body font.
+3. Icons: use Lucide ONLY. Add icons as <i data-lucide="icon-name"></i>. At the very end of <body> add: <script src="https://unpkg.com/lucide@latest"></script><script>lucide.createIcons()</script>. Never use FontAwesome or emoji as icons.
+4. Images: use real placeholder images ONLY from https://picsum.photos (e.g. https://picsum.photos/seed/hero/1200/600). Always include a width/height in the URL. Never use broken or empty src.
+5. Design: modern and professional — generous whitespace, a cohesive color palette, subtle gradients, rounded corners, soft shadows, clear visual hierarchy, and good typography. Make it look like a polished, production-quality website, not a rough draft.
+6. Fully responsive with proper mobile layouts using Tailwind's sm/md/lg breakpoints.
+7. Every section must be complete with realistic, relevant copy — no lorem ipsum, no placeholder TODOs, no empty containers.
+
+Do NOT include Flowbite, Swiper, or Chart.js unless the request specifically needs sliders or charts. Keep dependencies minimal and reliable so nothing renders broken.`
 
 // Helper to remove consecutive duplicate messages
 function deduplicateMessages(list: Messages[]): Messages[] {
@@ -54,6 +56,7 @@ export default function PlayGroundContent() {
   const frameId = params.get('frameId');
   const [frameDetail, setFrameDetail] = useState<Frame>();
   const [loading, setLoading] = useState(false);
+  const [loadingPhase, setLoadingPhase] = useState('');
   const [messages, setMessages] = useState<Messages[]>([]);
   const [generatedCode, setGeneratedCode] = useState<any>();
   const hasAutoTriggeredRef = useRef(false);
@@ -128,6 +131,7 @@ export default function PlayGroundContent() {
     if (isGeneratingRef.current) return;
     isGeneratingRef.current = true;
     setLoading(true);
+    setLoadingPhase('Connecting to Bloom engine');
     
     const isModification = /change|modify|update|add|remove|edit|fix|adjust|improve/i.test(userInput) && generatedCode;
     
@@ -145,7 +149,7 @@ export default function PlayGroundContent() {
     let promptContent = '';
     if (/create|build|design|generate|make|write|code|page|website|component|layout|form|dashboard|hero|section/.test(userInput.toLowerCase())) {
       if (isModification && generatedCode) {
-        promptContent = `Current Design Code:\n${generatedCode}\n\nUser Request: ${userInput}\n\nModify the above code based on the user's request. Include all necessary HTML structure and Tailwind classes. Return ONLY HTML code inside \`\`\`html and \`\`\` blocks.`;
+        promptContent = `Current Design Code:\n${generatedCode}\n\nUser Request: ${userInput}\n\nModify the above HTML based on the user's request. Keep it a complete document. Preserve the existing style system: Tailwind via https://cdn.tailwindcss.com, Lucide icons via <i data-lucide="..."></i> with lucide.createIcons(), and real images from https://picsum.photos. Keep the design polished and professional. Return ONLY the full updated HTML inside a single \`\`\`html code block.`;
       } else {
         promptContent = Prompt.replace('{userInput}', userInput);
       }
@@ -169,6 +173,8 @@ export default function PlayGroundContent() {
         const errorJson = await result.json().catch(() => ({}));
         throw new Error(errorJson?.error || 'Generation failed');
       }
+
+      setLoadingPhase('Generating your website');
 
       const reader = result.body?.getReader();
       if (!reader) {
@@ -200,6 +206,7 @@ export default function PlayGroundContent() {
 
         if (!isCode && aiResponse.includes('```html')) {
           isCode = true;
+          setLoadingPhase('Rendering live preview');
           const index = aiResponse.indexOf('```html') + 7;
           const initialCodeChunk = aiResponse.slice(index);
           // Set initial code synchronously so preview starts immediately
@@ -239,6 +246,7 @@ export default function PlayGroundContent() {
       console.error('[SendMessage]', err);
     } finally {
       setLoading(false);
+      setLoadingPhase('');
       isGeneratingRef.current = false;
     }
 
@@ -292,6 +300,7 @@ export default function PlayGroundContent() {
               messages={messages}
               onSend={(input) => SendMessage(input, true)}
               loading={loading}
+              loadingPhase={loadingPhase}
               isMobile={isMobile}
               activeModelName={selectedModel?.displayName}
             />

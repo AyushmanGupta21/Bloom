@@ -97,8 +97,8 @@ export default function VertexHero() {
               Version: v1.0.4
             </span>
             <span className="w-6 h-[1px] bg-white/40 inline-block animate-hero-divider" />
-            <span className="px-2.5 py-1 rounded-md bg-black/50 backdrop-blur-md border border-white/15 text-emerald-400">
-              Status: Active
+            <span className="px-2.5 py-1 rounded-md bg-black/50 backdrop-blur-md border border-white/15">
+              No-Code Friendly
             </span>
           </div>
 

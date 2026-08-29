@@ -133,7 +133,35 @@ function WebsiteDesign({ generatedCode, onElementSelect, selectedElement: extern
           .replaceAll("```", "");
       }
 
-      root.innerHTML = cleanCode.trim();
+      // The generated HTML may be a full document (<!DOCTYPE html>...<html>...).
+      // If so, extract just the <body> contents so we don't nest a full doc inside
+      // our shell body (which breaks layout). Otherwise use the code as-is.
+      const bodyMatch = cleanCode.match(/<body[^>]*>([\s\S]*?)<\/body>/i);
+      const injectable = bodyMatch ? bodyMatch[1] : cleanCode.trim();
+
+      root.innerHTML = injectable;
+
+      // Execute any <script> tags in the injected HTML (innerHTML does NOT run them).
+      // This is what makes interactive components and inline init code work.
+      const scripts = Array.from(root.querySelectorAll('script'));
+      scripts.forEach((oldScript) => {
+        const newScript = doc.createElement('script');
+        Array.from(oldScript.attributes).forEach((attr) => newScript.setAttribute(attr.name, attr.value));
+        newScript.textContent = oldScript.textContent;
+        oldScript.parentNode?.replaceChild(newScript, oldScript);
+      });
+
+      // Re-render Lucide icons and re-init Flowbite for the freshly injected DOM.
+      // Without this, <i data-lucide="..."> elements stay empty (blank boxes).
+      const reinitLibraries = () => {
+        const win = iframeRef.current?.contentWindow as any;
+        try { win?.lucide?.createIcons?.(); } catch {}
+        try { win?.initFlowbite?.(); } catch {}
+      };
+      // Run now, and again shortly after in case the CDN scripts are still loading.
+      reinitLibraries();
+      setTimeout(reinitLibraries, 300);
+      setTimeout(reinitLibraries, 1000);
 
       // Attach event listeners to new content
       let hoverEl: HTMLElement | null = null;

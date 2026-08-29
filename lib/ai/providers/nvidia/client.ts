@@ -66,7 +66,7 @@ export class NvidiaClient {
   /**
    * Safe fetch with exponential retry and backoff for 429/503/network errors
    */
-  private async fetchWithRetry(url: string, options: RequestInit, maxRetries: number = 3): Promise<Response> {
+  private async fetchWithRetry(url: string, options: RequestInit, maxRetries: number = 2): Promise<Response> {
     let lastError: any;
 
     for (let attempt = 1; attempt <= maxRetries; attempt++) {
@@ -77,11 +77,13 @@ export class NvidiaClient {
           return response;
         }
 
-        // Check if retryable (429 or 5xx)
+        // Check if retryable (429 or 5xx). Use a short, capped backoff so a
+        // transient blip adds ~1s, not 8-14s of dead waiting.
         if (response.status === 429 || response.status >= 500 || response.status === 408) {
           const retryAfterHeader = response.headers.get('Retry-After');
-          let delayMs = retryAfterHeader ? parseInt(retryAfterHeader, 10) * 1000 : Math.pow(2, attempt) * 1000 + Math.random() * 500;
-          if (isNaN(delayMs) || delayMs <= 0) delayMs = 2000;
+          let delayMs = retryAfterHeader ? parseInt(retryAfterHeader, 10) * 1000 : 800 * attempt + Math.random() * 300;
+          if (isNaN(delayMs) || delayMs <= 0) delayMs = 800;
+          delayMs = Math.min(delayMs, 2000); // hard cap at 2s
 
           if (attempt < maxRetries) {
             console.warn(`[NVIDIA NIM] Request returned ${response.status}. Retrying attempt ${attempt + 1}/${maxRetries} in ${delayMs}ms...`);
@@ -99,7 +101,7 @@ export class NvidiaClient {
           throw err;
         }
         if (attempt < maxRetries) {
-          const backoff = Math.pow(2, attempt) * 1000 + Math.random() * 500;
+          const backoff = Math.min(800 * attempt + Math.random() * 300, 2000);
           await new Promise((resolve) => setTimeout(resolve, backoff));
         }
       }

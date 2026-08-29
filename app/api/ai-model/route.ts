@@ -52,12 +52,18 @@ export async function POST(req: NextRequest) {
     const stream = new ReadableStream({
       async start(controller) {
         try {
+          // Cap output tokens: enough for a complete, polished single page without
+          // cutting off mid-HTML (which produces broken output), but not so high it
+          // runs unnecessarily long. 6000 covers a rich page in ~20-30s.
+          const cappedMaxTokens = Math.min(modelDetails.maxOutputTokens || 6000, 6000);
+
           const generator = AIRouter.executeStream({
             model: model || modelDetails.id,
             messages,
             stream: true,
-            temperature: 0.7,
-            max_tokens: modelDetails.maxOutputTokens || 4096,
+            temperature: 0.6,
+            top_p: 0.9,
+            max_tokens: cappedMaxTokens,
           });
 
           for await (const chunk of generator) {
