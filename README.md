@@ -2,7 +2,7 @@
 
 <div align="center">
   
-  <img src="public/logo.svg" alt="Bloom Logo" width="120" height="120" />
+  <img src="public/logo-main.png" alt="Bloom Logo" width="120" height="120" />
   
   <br />
 

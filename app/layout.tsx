@@ -11,33 +11,30 @@ import Provider from "./provider";
 import { Toaster } from "@/components/ui/sonner";
 
 export const metadata: Metadata = {
+  metadataBase: new URL('https://bloom-ai-builder.vercel.app'),
   title: "Bloom — AI Website Builder",
   description: "Turn ideas into beautiful, production-ready websites with Bloom's AI-powered website builder. Generate, edit, and export modern web applications instantly.",
   applicationName: "Bloom",
   keywords: ["Bloom", "AI website builder", "web design", "React", "Next.js", "Tailwind CSS", "generative UI"],
-  icons: {
-    icon: [
-      {
-        url: '/favicon.svg',
-        type: 'image/svg+xml',
-      },
-      {
-        url: '/logo.svg',
-        type: 'image/svg+xml',
-      }
-    ],
-    apple: '/apple-icon.svg',
-  },
   openGraph: {
     title: "Bloom — AI Website Builder",
     description: "From idea to website, instantly. Generate, edit, and deploy production-ready web designs with AI.",
     siteName: "Bloom",
     type: "website",
+    images: [
+      {
+        url: '/logo-main.png',
+        width: 1024,
+        height: 1024,
+        alt: 'Bloom — AI Website Builder',
+      },
+    ],
   },
   twitter: {
     card: "summary_large_image",
     title: "Bloom — AI Website Builder",
     description: "Turn ideas into beautiful, production-ready websites with Bloom's AI-powered website builder.",
+    images: ['/logo-main.png'],
   }
 };
 

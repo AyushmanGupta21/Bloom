@@ -50,10 +50,10 @@ export default function VertexNavbar() {
       >
         {/* Left - Bloom Logo & Name */}
         <Link href="/" className="flex items-center gap-2.5 select-none group">
-          <div className="p-1 rounded-xl bg-white/10 border border-white/20 backdrop-blur-md transition-transform group-hover:scale-105">
-            <Image src="/logo.svg" alt="Bloom Logo" width={28} height={28} className="rounded-lg" />
+          <div className="rounded-xl overflow-hidden shadow-[0_2px_10px_rgba(0,0,0,0.5)] transition-transform group-hover:scale-105">
+            <Image src="/bloom-logo.svg" alt="Bloom Logo" width={34} height={34} className="block" />
           </div>
-          <span className="text-white text-lg font-bold font-mono tracking-tight drop-shadow-[0_2px_8px_rgba(0,0,0,0.8)]">Bloom</span>
+          <span className="text-white text-lg font-bold font-mono tracking-normal drop-shadow-[0_2px_8px_rgba(0,0,0,0.8)]">Bloom</span>
         </Link>
 
         {/* Center - Links (Desktop Only with Liquid Pill Backdrop) */}

@@ -12,7 +12,7 @@ function Header() {
     <div className='flex items-center justify-between p-4 bg-black/30 backdrop-blur-md border-b border-white/10 font-mono'>
       {/* logo */}
       <div className='flex gap-2 items-center'>
-        <Image src="/logo.svg" alt="Bloom Logo" width={32} height={32} className='rounded-lg' />
+        <Image src="/bloom-logo.svg" alt="Bloom Logo" width={34} height={34} className='rounded-lg' />
         <h2 className='font-bold text-xl text-white'>Bloom</h2>
       </div>
       {/* get started button */}

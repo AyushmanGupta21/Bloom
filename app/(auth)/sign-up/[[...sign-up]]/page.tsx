@@ -13,7 +13,7 @@ export default function Page() {
             {/* Brand Logo Header */}
             <div className="mb-6 relative z-10">
                 <Link href="/" className="flex items-center gap-2.5 select-none hover:opacity-80 transition-opacity">
-                    <Image src="/logo.svg" alt="Bloom Logo" width={36} height={36} className="rounded-lg bg-white/10 p-0.5" />
+                    <Image src="/bloom-logo.svg" alt="Bloom Logo" width={40} height={40} className="rounded-lg" />
                     <span className="text-xl font-bold font-mono tracking-tight text-white">Bloom</span>
                 </Link>
             </div>

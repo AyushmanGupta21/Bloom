@@ -102,7 +102,7 @@ export default function FeaturesPage() {
       {/* Footer */}
       <footer className="w-full py-12 px-6 sm:px-10 md:px-16 lg:px-20 border-t border-white/10 bg-black flex flex-col sm:flex-row items-center justify-between gap-6">
         <div className="flex items-center gap-2 text-white/60 text-xs select-none font-mono">
-          <Image src="/logo.svg" alt="Bloom Logo" width={20} height={20} className="rounded-md opacity-80" />
+          <Image src="/bloom-mark.svg" alt="Bloom Logo" width={22} height={22} className="opacity-80" />
           <span>&copy; {new Date().getFullYear()} Bloom AI. All rights reserved.</span>
         </div>
         <div className="flex gap-6 text-white/50 text-[10px] uppercase tracking-wider font-mono">

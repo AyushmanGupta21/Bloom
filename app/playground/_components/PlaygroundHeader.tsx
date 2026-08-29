@@ -33,7 +33,7 @@ function PlaygroundHeader({ onUsePrompt }: PlaygroundHeaderProps) {
           </Link>
           
           <div className="flex items-center gap-2 select-none pr-1">
-            <Image src="/logo.svg" alt="Bloom Logo" width={22} height={22} className="rounded" />
+            <Image src="/bloom-logo.svg" alt="Bloom Logo" width={26} height={26} className="rounded-md" />
             <span className="hidden md:inline text-white text-xs font-semibold tracking-tight">Bloom</span>
           </div>
 
